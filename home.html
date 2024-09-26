@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Portfolio Website</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img  src="Image/ICR.png" alt="">
+            <a href="#" >Kyzz</a>
+        </div>
+        
+        
+
+        <nav>
+            <a href="#" class="active"> Home</a>
+            <a href="#" >Services</a>
+            <a href="#" >Skills</a>
+            <a href="#" >Education</a>
+            <a href="#" >Experience</a>
+            <a href="#" >Contact</a>
+        </nav>
+
+        <div class="profile-container"></div>
+            
+            <h1 id="user-name">User Name</h1>
+            <p id="user-email">Email</p>
+        </div>
+    </header>
+    <section class="home">
+        <div class="home-img">
+            <img src="Image/hero.png" alt="">
+        </div>
+        <div class="home-content">
+            <h1>Hi, It's <span>Kyzz</span></h1>
+            <h3 class="typing-text">I'm a <span></span></h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus labore dolores esse. Odit similique doloribus tenetur doloremque, sunt commodi in ipsa repudiandae debitis deleniti blanditiis quibusdam quaerat neque asperiores ea.</p>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-github"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+            <a href="#" class="btn">Hire me</a>
+        </div>
+    </section>
+
+    
+
+    <!-- <section>
+        <div class="profile-container">
+            <img src="placeholder.png" id="profile-pic" alt="Profile Picture">
+            <h1 id="user-name">User Name</h1>
+            <p id="user-email">Email</p>
+            <button id="google-login">Login with Google</button>
+            <button id="facebook-login">Login with Facebook</button>
+          </div>
+          
+    </section> -->
+    
+    
+    <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '1129972825132947',
+            cookie     : true,
+            xfbml      : true,
+            version    : 'v20.0'
+          });
+      
+          FB.getLoginStatus(function(response) {
+            if (response.status === 'connected') {
+              FB.api('/me', {fields: 'name,email'}, function(response) {
+                document.getElementById('user-name').innerText = response.name;
+                document.getElementById('user-email').innerText = response.email;
+              });
+            }
+          });
+        };
+      
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "https://connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+      </script>
+   
+
+      
+</body>
+</html>

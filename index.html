@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1129972825132947', // Replace with your actual Facebook App ID
+                cookie     : true,  // Enable cookies to allow the server to access the session
+                xfbml      : true,  // Parse social plugins on this page
+                version    : 'v20.0' // Use this Graph API version
+            });
+
+            // Check the current login status
+            FB.getLoginStatus(function(response) {
+                // Handle the response accordingly
+                console.log(response);
+            });
+        };
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h1>Login</h1>
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            <button class="login-button">Login</button>
+
+            <div class="divider">
+                <span>OR</span>
+            </div>
+
+            <button class="facebook-button" id="facebook-login">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                Login with Facebook
+            </button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/firebase/app@9.6.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/firebase/auth@9.6.1"></script>
+    <script>
+        // Facebook login button functionality
+        document.getElementById('facebook-login').onclick = function() {
+            FB.login(function(response) {
+                if (response.authResponse) {
+                    console.log('Welcome! Fetching your information.... ');
+                    FB.api('/me', {fields: 'name,email'}, function(response) {
+                        console.log('Good to see you, ' + response.name + '.');
+                        // Redirect to home.html after successful login
+                        window.location.href = 'home.html';
+                    });
+                } else {
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, {scope: 'public_profile,email'}); // Request permissions
+        };
+    </script>
+</body>
+</html>
